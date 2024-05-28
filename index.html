@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Player Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+            max-width: 500px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="radio"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            box-sizing: border-box;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+        }
+
+        .style-options {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .style-options label {
+            width: 30%;
+            margin-bottom: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .style-options img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 15px;
+        }
+
+        .style-options img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .style-options input {
+            display: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <form id="playerForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name and your channels id">
+            </div>
+            <div class="form-group">
+                <label for="playerName">Player Name</label>
+                <input type="text" id="playerName" name="playerName" required placeholder="Enter a players name">
+            </div>
+            <div class="form-group">
+                <label>Style</label>
+                <div class="style-options">
+                    <label for="style1">
+                        <input type="radio" id="style1" name="style" value="style1" required>
+                        <img src="style1.jpg" alt="Style 1">
+                    </label>
+                    <label for="style2">
+                        <input type="radio" id="style2" name="style" value="style2" required>
+                        <img src="style2.jpg" alt="Style 2">
+                    </label>
+                    <label for="style3">
+                        <input type="radio" id="style3" name="style" value="style3" required>
+                        <img src="style3.jpg" alt="Style 3">
+                    </label>
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('playerForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const url = 'https://script.google.com/macros/s/AKfycbzHs1DWTs003c2b-W2L8bqvgoUwr-yB7AQQwTVTwvqgltBCDCxe1o-UJMtGmmddmj4b/exec'; 
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.text())
+                .then(data => {
+                    alert('Form submitted successfully! Please subscribe to @EditsxRonny');
+                    document.getElementById('playerForm').reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+
+</body>
+
+</html>
